@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 Jokes
+  for joke in jokeList
+    p= joke.joke
+    a(href='/delete/#{joke.id}') Delete
+  form(name="jokeForm", method="post")
+        input(type="text", name="joke")
+        input(type="submit")

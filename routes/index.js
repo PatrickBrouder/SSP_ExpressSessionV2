@@ -37,6 +37,7 @@ router.post('/jokes', function(req, res, next) {
   var joke = {};
   joke.id= req.session.jokeCounter++;
   joke.joke = req.body.joke;
+  joke.fname = req.files[0].originalname;
   req.session.myJokes.push(joke);
   res.redirect('/jokes');
 

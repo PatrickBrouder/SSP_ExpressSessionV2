@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var session = require('express-session');
-
+var multer = require("multer");
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -23,6 +23,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+var sotrageMeth = multer.diskStorage({
+  destination: function(req, file, cb){
+    if(!fs.existsSync('./uploads')){
+      fs.mkdirSync();
+    }
+    cb(null, './uploads/');
+  },
+  filename: function(req, file, cb){
+    cb(null, file.originalname);
+  }
+});
+
+app.use('/', multer({storage:storageMeth}).any());
 var expressSessionOptions = {
   secret:'mySecret',
   resave: false,

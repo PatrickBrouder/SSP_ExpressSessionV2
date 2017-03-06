@@ -4,7 +4,9 @@ block content
   h1 Jokes
   for joke in jokeList
     p= joke.joke
-    a(href='/delete/#{joke.id}') Delete
-  form(name="jokeForm", method="post")
+    p= joke.fname;
+    a(href='/delete/#{joke.id}') 
+  form(name="jokeForm", method="post", enctype="multipart/form-data")
         input(type="text", name="joke")
+        input(type="file", name="myFile")
         input(type="submit")

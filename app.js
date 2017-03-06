@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var fs = require('fs');
 var session = require('express-session');
 var multer = require("multer");
 var index = require('./routes/index');
@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-var sotrageMeth = multer.diskStorage({
+var storageMeth = multer.diskStorage({
   destination: function(req, file, cb){
     if(!fs.existsSync('./uploads')){
       fs.mkdirSync();

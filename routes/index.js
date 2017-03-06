@@ -52,8 +52,7 @@ router.get('/delete/:id', function(req, res, next) {
 
   var allJokes=req.session.myJokes;
   var jokeID=req.params.id;
-  var jokeIndex=allJokes.findIndex(function(x) { return x.id === jokeID; });
-  console.log(allJokes.findIndex(x => x.id==jokeID));
+  var jokeIndex=allJokes.findIndex(function(x) { return x.id === jokeID });
   req.session.myJokes.splice(jokeIndex, 1);
   
   res.redirect('/jokes');

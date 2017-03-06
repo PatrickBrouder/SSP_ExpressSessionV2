@@ -47,14 +47,12 @@ router.get('/jokes', function(req, res, next) {
   }
   res.render('jokes',{ jokeList: req.session.myJokes });
 });
-var test= function(x) { 
-    return x.id === jokeID 
-}
+
 router.get('/delete/:id', function(req, res, next) {
 
   var allJokes=req.session.myJokes;
   var jokeID=req.params.id;
-  var jokeIndex=allJokes.findIndex(test);
+  var jokeIndex=allJokes.findIndex(function(x) { return x.id === jokeID });
   req.session.myJokes.splice(jokeIndex, 1);
   
   res.redirect('/jokes');
